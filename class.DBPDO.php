@@ -3,7 +3,7 @@
 class DBPDO {
 
 	public $pdo;
-	private $error;
+	public $error;
 
 
 	function __construct() {
@@ -53,6 +53,10 @@ class DBPDO {
 		}
 		$stmt = $this->prep_query($query);
 		$stmt->execute($values);
+
+		// Get error.
+		$this->error = $stmt->errorInfo();
+
 		return $stmt;
 	}
 
